@@ -1,0 +1,18 @@
+body{
+    height:100vh;
+    background-image: url(../images/1898667.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.hero{
+    background-color: #2F323A;
+    opacity:0.9;
+   
+}
+.title,
+.subtitle{
+    color:#E39EC1;
+    font-weight: bolder;
+
+}
