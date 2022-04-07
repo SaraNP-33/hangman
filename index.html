@@ -11,15 +11,44 @@
 </head>
 <body>
     <section class="hero">
-        <div class="hero-body">
+        <div class="hero-body is-flex is-flex-direction-column">
           <p class="title has-text-centered">
             90's Movie Hangman
           </p>
           <p class="subtitle has-text-centered">
             Press Start To Play!
           </p>
+          <button id= "startBtn" class="button is-responsive is-align-self-center">
+            Start
+          </button>
         </div>
       </section>
-    
+      <div class="main">
+      <div class="container is-flex">
+        <form class="box mainBox">
+          <div class="content">
+            <h2 class="has-text-centered"id="playTitle">Let's Play!</h2>
+            <h3 class="has-text-centered"id="wordSpaces">Here will be the dashes</h3>
+            <h4 class="has-text-centered"id="guessesLeft">Guesses Left:</h4>
+            <h4 class="has-text-centered" id="wins">Wins:</h4>
+            <h4 class="has-text-centered" id="losses">Losses:</h4>
+          </div>
+        </form>
+        </div>
+        <div class="is-flex second">
+        <form class="box">
+          <div class="content">
+            <h3 class="has-text-centered" id="letterbtn">Possible Letters</h3>
+          </div>
+        </form>
+        <form class="box">
+          <div class="content">
+            <h3 class="has-text-centered" id="wrongLetters">Wrong Letters </h3>
+          </div>
+        </form>
+      </div>
+    </div>
+     
+     
 </body>
 </html>

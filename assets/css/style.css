@@ -4,6 +4,7 @@ body{
     background-repeat:no-repeat;
     background-size: cover;
 }
+/* Hero section */
 
 .hero{
     background-color: #2F323A;
@@ -15,4 +16,47 @@ body{
     color:#E39EC1;
     font-weight: bolder;
 
+}
+
+#startBtn{
+    background-color: #9B6F75;
+    color:whitesmoke
+}
+
+/* Main game section */
+.container{
+    margin-top:10vh;
+}
+.box{
+    background-color: #2F323A;
+    opacity:0.9;
+    
+}
+#playTitle,
+#wordSpaces,
+#guessesLeft,
+#wins,
+#losses,
+#letterbtn,
+#wrongLetters{
+    color:#E39EC1;
+}
+.main{
+    display:flex;
+    flex-direction: row; 
+}
+.container{
+   
+    justify-content: center;
+    margin-left: 5vw;
+   
+}
+.second{
+    flex-direction: column;
+    justify-content: center;
+    margin-top:8vh;
+    width:15vw;
+    margin-right:5vw;
+   
+    
 }
