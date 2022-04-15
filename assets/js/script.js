@@ -11,6 +11,7 @@ function displayBtn(){
         const letterBtn = document.createElement("button")
         letterBtn.textContent= letters[i]
         letterBtn.setAttribute("value", letters[i])
+        letterBtn.setAttribute("class"," button alphaBtn mt-2 mx-1")
         letterBtnEL.append(letterBtn)
 
     }

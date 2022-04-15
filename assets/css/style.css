@@ -42,4 +42,12 @@ body{
     color:#E39EC1;
 }
 
-
+.alphaBtn{
+    background-color:#012A36 !important ;
+    color:whitesmoke;
+    border: solid 2px #D295BF;
+    border-radius:30%;
+}
+.alphaBtn:hover{
+    color:#D295BF;
+}
