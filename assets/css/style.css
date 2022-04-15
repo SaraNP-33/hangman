@@ -37,7 +37,7 @@ body{
 #guessesLeft,
 #wins,
 #losses,
-#letterbtn,
+#possible,
 #wrongLetters{
     color:#E39EC1;
 }
