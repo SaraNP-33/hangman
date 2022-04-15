@@ -22,3 +22,9 @@ startBtn.addEventListener("click", (event)=>{
     gameContainer.classList.remove("is-hidden")
     displayBtn()
 })
+
+letterBtnEL.addEventListener("click", (event)=>{
+    event.preventDefault()
+    const clickedLetter= this.event.target.value
+    console.log(clickedLetter)
+})
