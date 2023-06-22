@@ -11,24 +11,25 @@ let randomWord;
 const underscore=[]
 const guessed=[]
 let i=0;
+let remainaingGuesses=10;
+
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
-//TODO: include a way to check if the letter chosen is correct or not without
 //TODO: create logic for the end of the game
 //TODO: add wins/loses to localStorage
 //Todo: create a restart button
 //Todo: include hints
 
-// function displayBtn(){
-//     for(let i=0; i<alphabet.length; i++){
-//         const letterBtn = document.createElement("button")
-//         letterBtn.textContent= alphabet[i]
-//         letterBtn.setAttribute("value", alphabet[i])
-//         letterBtn.setAttribute("class"," button alphaBtn mt-2 mx-1")
-//         letterBtnEL.append(letterBtn)  
-//     }
-// }
-
+function displayBtn(){
+    for(let i=0; i<alphabet.length; i++){
+        const letterBtn = document.createElement("button")
+        letterBtn.textContent= alphabet[i]
+        letterBtn.setAttribute("value", alphabet[i])
+        letterBtn.setAttribute("class"," button alphaBtn mt-2 mx-1")
+        letterBtnEL.append(letterBtn)  
+    }
+}
+guessesLeft.textContent= `Guesses Left: ${remainaingGuesses}`
 
 function movie(){
     
@@ -38,7 +39,7 @@ function movie(){
         randomWord= wordList[randomIndex].movie
         randomWord = new Word(randomWord);
 
-        guessesLeft.textContent= `Guesses Left: ${randomWord.word.length}`
+       
         
         wordSpaces.innerHTML=randomWord.display()
         
@@ -50,36 +51,37 @@ function movie(){
 function checkLetter(userChoice){
     randomWord.check(userChoice)
     wordSpaces.innerHTML=randomWord.display() 
-        
-    console.log(randomWord.word);
+     const show= randomWord.display()
+     console.log(show);    
+    
 
-        if(!guessed.includes(userChoice)){
-            console.log(userChoice);
-           guessed.push(userChoice) 
-        } 
-      
-        const btn= document.createElement("button")
-        for (let i = 0; i < randomWord.word.length; i++) {
-            console.log(randomWord.word[i].guess==true);
-            if(randomWord.word[i].guess==true){
-                console.log("Hooray you did it!");
-            }else{
-                
+        // if(!guessed.includes(userChoice)){
+        //     console.log(userChoice);
+        //    guessed.push(userChoice) 
+        // } 
+        
+        if(!show.includes(userChoice) && !guessed.includes(userChoice) ){
+            console.log("try again");
+            guessed.push(userChoice) 
+            const btn= document.createElement("button")
+
+            guessed.forEach(index => {
                 btn.textContent=userChoice;
                 btn.setAttribute("class"," button alphaBtn mt-2 mx-1")
                 badLetters.append(btn)
-            }
-            
-        }
-    
-    
+            });
+        
+            remainaingGuesses--
+             guessesLeft.textContent= `Guesses Left: ${remainaingGuesses}`
+            console.log(remainaingGuesses);
+        }      
 }
 
 startBtn.addEventListener("click", (event)=>{
     event.preventDefault()
     gameContainer.classList.remove("is-hidden")
     startBtn.style.display="none"
-    // displayBtn()
+    displayBtn()
     movie()
 })
 
