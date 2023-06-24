@@ -39,7 +39,7 @@ const alphabet = [
 
 let randomWord;
 const wrongGuesses = [];
-let remainaingGuesses = 10;
+let remainaingGuesses = 3;
 const jsConfetti = new JSConfetti()
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
@@ -103,6 +103,10 @@ function checkLetter(userChoice) {
       ],
     })
     openModal();
+  }else if(remainaingGuesses===0){
+    modalTitle.textContent="LOSER!!!"
+    modalBody.textContent="YOU SUCK AT 90'S MOVIES!!!!"
+    openModal()
   }
 }
 
