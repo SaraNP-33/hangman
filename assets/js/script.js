@@ -9,6 +9,7 @@ const modalTitle= document.querySelector(".winner-loser-title")
 const modalBody= document.querySelector(".winner-loser-body")
 const keepPlayingBtn= document.querySelector(".keep-playing")
 const scoresBtn= document.querySelector(".scores")
+const closeModalEL=document.querySelector(".delete")
 const hintBtn= document.getElementById("hint-btn")
 
 const alphabet = [
@@ -97,19 +98,27 @@ function checkLetter(userChoice) {
     console.log(remainaingGuesses);
   }
   
-  hint()
+  // hint
+  if(remainaingGuesses == 5){
+    const btn= document.createElement("button")
+    btn.setAttribute("class", " button hint");
+    btn.textContent= "Hint!"
+    hintBtn.append(btn)
+  }
+
   WinLose(show)
  
  
 }
 
 function hint(){
-  if(remainaingGuesses <= 5){
-    const btn= document.createElement("button")
-    btn.setAttribute("class", " button hint");
-    btn.textContent= "Hint!"
-    hintBtn.append(btn)
-  }
+  
+  modalTitle.textContent="Hint!"
+  modalBody.textContent="Here is your Hint!"
+  keepPlayingBtn.style.display="none"
+  scoresBtn.style.display="none"
+  openModal()
+
 }
 
 function WinLose(show){
@@ -132,6 +141,7 @@ function WinLose(show){
 
 }
 
+//Event Listeners
 startBtn.addEventListener("click", (event) => {
   event.preventDefault();
   gameContainer.classList.remove("is-hidden");
@@ -146,15 +156,14 @@ letterBtnEL.addEventListener("click", (event) => {
   checkLetter(clickedLetter);
 });
 
+closeModalEL.addEventListener("click", (event)=>{
+  event.preventDefault();
+  modal.classList.remove("is-active")
+})
 
-hintBtn.addEventListener("click", (e)=>{
-  e.preventDefault();
-  modalTitle.textContent="Hint!"
-  modalBody.textContent="Here is your Hint!"
-  keepPlayingBtn.style.display="none"
-  scoresBtn.style.display="none"
-  openModal()
-  
+hintBtn.addEventListener("click", (event)=>{
+  event.preventDefault();
+  hint()
 })
 
 
@@ -162,9 +171,7 @@ function openModal(){
   modal.classList.add("is-active")
 }
 
-function closeModal(){
-  modal.classList.remove("is-active")
-}
+
 
 
 
