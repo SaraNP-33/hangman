@@ -7,6 +7,9 @@ const guessesLeft = document.getElementById("guessesLeft");
 const modal= document.querySelector(".modal")
 const modalTitle= document.querySelector(".winner-loser-title")
 const modalBody= document.querySelector(".winner-loser-body")
+const keepPlayingBtn= document.querySelector(".keep-playing")
+const scoresBtn= document.querySelector(".scores")
+const hintBtn= document.getElementById("hint-btn")
 
 const alphabet = [
   "A",
@@ -39,7 +42,7 @@ const alphabet = [
 
 let randomWord;
 const wrongGuesses = [];
-let remainaingGuesses = 3;
+let remainaingGuesses = 6;
 const jsConfetti = new JSConfetti()
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
@@ -93,7 +96,24 @@ function checkLetter(userChoice) {
     guessesLeft.textContent = `Guesses Left: ${remainaingGuesses}`;
     console.log(remainaingGuesses);
   }
+  
+  hint()
+  WinLose(show)
+ 
+ 
+}
 
+function hint(){
+  if(remainaingGuesses <= 5){
+    const btn= document.createElement("button")
+    btn.setAttribute("class", " button hint");
+    btn.textContent= "Hint!"
+    hintBtn.append(btn)
+  }
+}
+
+function WinLose(show){
+ 
   if(!show.includes("_")){
     modalTitle.textContent="WINNER!!!"
     modalBody.textContent="You Did it!!!!"
@@ -103,11 +123,13 @@ function checkLetter(userChoice) {
       ],
     })
     openModal();
-  }else if(remainaingGuesses===0){
+  }
+  else if(remainaingGuesses===0){
     modalTitle.textContent="LOSER!!!"
     modalBody.textContent="YOU SUCK AT 90'S MOVIES!!!!"
     openModal()
   }
+
 }
 
 startBtn.addEventListener("click", (event) => {
@@ -124,6 +146,18 @@ letterBtnEL.addEventListener("click", (event) => {
   checkLetter(clickedLetter);
 });
 
+
+hintBtn.addEventListener("click", (e)=>{
+  e.preventDefault();
+  modalTitle.textContent="Hint!"
+  modalBody.textContent="Here is your Hint!"
+  keepPlayingBtn.style.display="none"
+  scoresBtn.style.display="none"
+  openModal()
+  
+})
+
+
 function openModal(){
   modal.classList.add("is-active")
 }
@@ -131,3 +165,6 @@ function openModal(){
 function closeModal(){
   modal.classList.remove("is-active")
 }
+
+
+
