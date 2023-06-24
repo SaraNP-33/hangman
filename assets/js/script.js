@@ -11,6 +11,8 @@ const keepPlayingBtn= document.querySelector(".keep-playing")
 const scoresBtn= document.querySelector(".scores")
 const closeModalEL=document.querySelector(".delete")
 const hintBtn= document.getElementById("hint-btn")
+const winEL=document.getElementById("wins")
+const lossesEL=document.getElementById("losses")
 
 const alphabet = [
   "A",
@@ -46,14 +48,22 @@ const wrongGuesses = [];
 let remainaingGuesses = 6;
 const jsConfetti = new JSConfetti()
 let randomIndex;
+let win=0;
+let lose=0;
+let previousWins;
+let previousLosses;
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
 //TODO: create logic for the end of the game
 //TODO: add wins/loses to localStorage
 //Todo: create a restart button
-//Todo: include hints
+
 
 guessesLeft.textContent = `Guesses Left: ${remainaingGuesses}`;
+previousWins=localStorage.getItem("win")
+previousLosses=localStorage.getItem("lose")
+winEL.textContent=`Wins: ${previousWins}`
+lossesEL.textContent=`Losses: ${previousLosses}`
 
 function displayBtn() {
   for (let i = 0; i < alphabet.length; i++) {
@@ -101,6 +111,7 @@ function checkLetter(userChoice) {
   
   // hint
   if(remainaingGuesses == 5){
+    hintBtn.innerHTML=""
     const btn= document.createElement("button")
     btn.setAttribute("class", " button hint");
     btn.textContent= "Hint!"
@@ -140,11 +151,20 @@ function WinLose(show){
       ],
     })
     openModal();
+    previousWins=localStorage.getItem("win")
+    console.log(previousWins);
+    win+=previousWins
+    localStorage.setItem("win", ++win)
+    winEL.textContent= `Wins: ${win}`
   }
   else if(remainaingGuesses===0){
     modalTitle.textContent="LOSER!!!"
     modalBody.textContent="YOU SUCK AT 90'S MOVIES!!!!"
     openModal()
+    previousLosses=localStorage.getItem("lose")
+    lose+=[previousLosses]
+    localStorage.setItem("lose", ++lose)
+    lossesEL.textContent= `Losses: ${lose}`
   }
 
 }
