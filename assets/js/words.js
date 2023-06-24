@@ -15,4 +15,12 @@ const wordList=[{
     movie:"PRETTY WOMAN",
     hint:"tbd",
     imgHint:"./assets/images/Pretty-woman.jpg"
-}]
+},
+]
+
+const endGame=[
+    {
+        victoryimg:"./assets/images/superhero-counting-three.jpg",
+        defeatimg:"./assets/images/pessimistic-male-hopeless-bearded-guy-with-blond-hairstyle-wearing-green-beanie-beige-sweater-clench-his-fists-screams-desperate-stand-isolated-yellow-wall.jpg"
+    }
+]

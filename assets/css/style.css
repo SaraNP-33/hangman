@@ -3,6 +3,7 @@ body{
     background-image: url(../images/1898667.jpg);
     background-repeat:no-repeat;
     background-size: cover;
+    font-family: 'Anonymous Pro', monospace;
 }
 /* Hero section */
 
@@ -18,6 +19,15 @@ body{
 
 }
 
+.press-start{
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+ 
 #startBtn{
     background-color: #9B6F75;
     color:whitesmoke

@@ -1,59 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!----Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital@1&display=swap"
+      rel="stylesheet"
+    />
     <!---bulma cdn--->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Hangman</title>
-</head>
-<body>
+  </head>
+  <body>
     <section class="hero">
-        <div class="hero-body is-flex is-flex-direction-column">
-          <p class="title has-text-centered">
-            90's Movie Hangman
-          </p>
-          <p class="subtitle has-text-centered">
-            Press Start To Play!
-          </p>
-          <button id="startBtn" class="button is-responsive is-align-self-center">
-            Start
-          </button>
-        </div>
-      </section>
+      <div class="hero-body is-flex is-flex-direction-column">
+        <p class="title has-text-centered">90's Movie Hangman</p>
+        <p class="subtitle has-text-centered press-start">Press Start To Play!</p>
+        <button id="startBtn" class="button is-responsive is-align-self-center">
+          Start
+        </button>
+      </div>
+    </section>
     <div id="gameContainer" class="container is-hidden">
       <div class="columns is-vcentered">
-       <div class="column is-3">
-        <form class="box">
-          <div class="content">
-            <h3 id="possible"class="has-text-centered">Possible Letters</h3>
-            <div id="letterbtn"></div>
-          </div>
-        </form>
+        <div class="column is-3">
+          <form class="box">
+            <div class="content">
+              <h3 id="possible" class="has-text-centered">Possible Letters</h3>
+              <div id="letterbtn"></div>
+            </div>
+          </form>
         </div>
         <div class="column is-6">
-        <form class="box">
-          <div class="content">
-            <h2 class="has-text-centered"id="playTitle">Let's Play!</h2>
-            <h3 class="has-text-centered"id="wordSpaces">Here will be the dashes</h3>
-            <h4 class="has-text-centered"id="guessesLeft">Guesses Left:</h4>
-            <h4 class="has-text-centered" id="wins">Wins:</h4>
-            <h4 class="has-text-centered" id="losses">Losses:</h4>
-          </div>
-          <div id="hint-btn"></div>
-        </form>
+          <form class="box">
+            <div class="content">
+              <h2 class="has-text-centered" id="playTitle">Let's Play!</h2>
+              <h3 class="has-text-centered" id="wordSpaces">
+                Here will be the dashes
+              </h3>
+              <h4 class="has-text-centered" id="guessesLeft">Guesses Left:</h4>
+              <h4 class="has-text-centered" id="wins">Wins: 0</h4>
+              <h4 class="has-text-centered" id="losses">Losses: 0</h4>
+            </div>
+            <div id="hint-btn"></div>
+          </form>
         </div>
         <div class="column is-3">
-        <form class="box">
-          <div class="content">
-            <h3 class="has-text-centered" id="wrongLetters">Wrong Letters </h3>
-            <div id="badLetters"></div>
-          </div>
-        </form>
-       </div> 
-
+          <form class="box">
+            <div class="content">
+              <h3 class="has-text-centered" id="wrongLetters">Wrong Letters</h3>
+              <div id="badLetters"></div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
@@ -64,9 +71,9 @@
           <p class="modal-card-title has-text-centered winner-loser-title"></p>
           <button class="delete" aria-label="close"></button>
         </header>
-        <section class="modal-card-body is-flex is-flex-direction-column is-justify-content-center winner-loser-body">
-         
-        </section>
+        <section
+          class="modal-card-body is-flex is-flex-direction-column is-justify-content-center winner-loser-body"
+        ></section>
         <footer class="modal-card-foot">
           <button class="button is-success keep-playing">Keep Playing</button>
           <button class="button scores">Scores</button>
@@ -74,10 +81,10 @@
       </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-<script src="./assets/js/words.js"></script>   
-<script src="./lib/Letter.js"></script>  
-<script src="./lib/Word.js"></script>    
-<script src="./assets/js/script.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="./assets/js/words.js"></script>
+    <script src="./lib/Letter.js"></script>
+    <script src="./lib/Word.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
