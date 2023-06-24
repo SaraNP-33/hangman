@@ -45,6 +45,7 @@ let randomWord;
 const wrongGuesses = [];
 let remainaingGuesses = 6;
 const jsConfetti = new JSConfetti()
+let randomIndex;
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
 //TODO: create logic for the end of the game
@@ -67,7 +68,7 @@ function displayBtn() {
 
 function movie() {
   if (wordList.length > 0) {
-    const randomIndex = Math.floor(Math.random() * wordList.length);
+    randomIndex = Math.floor(Math.random() * wordList.length);
 
     randomWord = wordList[randomIndex].movie;
     randomWord = new Word(randomWord);
@@ -111,16 +112,23 @@ function checkLetter(userChoice) {
  
 }
 
+//Hint Modal 
 function hint(){
-  
+  modalBody.innerHTML=" "
   modalTitle.textContent="Hint!"
-  modalBody.textContent="Here is your Hint!"
+  const img= document.createElement("img")
+  img.setAttribute("src", wordList[randomIndex].imgHint)
+  const h3= document.createElement("h3")
+  h3.setAttribute("class", "title has-text-centered")
+  h3.textContent=wordList[randomIndex].hint
+  modalBody.append(h3, img)
   keepPlayingBtn.style.display="none"
   scoresBtn.style.display="none"
   openModal()
 
 }
 
+//Win/Lose Modal
 function WinLose(show){
  
   if(!show.includes("_")){
