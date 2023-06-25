@@ -103,7 +103,7 @@ function checkLetter(userChoice) {
 
     wrongGuesses.forEach(() => {
       btn.textContent = userChoice;
-      btn.setAttribute("class", " button alphaBtn mt-2 mx-1");
+      btn.setAttribute("class", " button alphaBtn is-static mt-2 mx-1");
       badLetters.append(btn);
     });
 
@@ -113,12 +113,15 @@ function checkLetter(userChoice) {
   }
 
   // hint
-  if (remainaingGuesses == 5) {
-    hintBtn.innerHTML = "";
-    const btn = document.createElement("button");
-    btn.setAttribute("class", " button hint");
-    btn.textContent = "Hint!";
-    hintBtn.append(btn);
+  if (remainaingGuesses === 5) {
+    console.log(remainaingGuesses === 5);
+    hintBtn.innerHTML = " ";
+    const button = document.createElement("button");
+    button.setAttribute("class", " button hint");
+    button.textContent = "Hint!";
+    hintBtn.append(button);
+
+    //TODO: set timer to pause btn animation
   }
 
   WinLose(show);
