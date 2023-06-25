@@ -29,10 +29,12 @@ body{
   }
  
 #startBtn,
-.hint{
+.hint,
+.continue-game{
     background-color: #ba8c1a ;
     color:whitesmoke;
-    border:#ba8c1a
+    border:#ba8c1a;
+    font-family: 'Anonymous Pro', monospace;
 }
 
 .hint{

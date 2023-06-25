@@ -8,12 +8,13 @@ const guessesLeft = document.getElementById("guessesLeft");
 const modal = document.querySelector(".modal");
 const modalTitle = document.querySelector(".winner-loser-title");
 const modalBody = document.querySelector(".winner-loser-body");
-const keepPlayingBtn = document.querySelector(".keep-playing");
+const keepPlayingModalBtn = document.querySelector(".keep-playing");
 const scoresBtn = document.querySelector(".scores");
 const closeModalEL = document.querySelector(".delete");
 const hintBtn = document.getElementById("hint-btn");
 const winEL = document.getElementById("wins");
 const lossesEL = document.getElementById("losses");
+const next=document.querySelector(".next")
 
 const alphabet = [
   "A",
@@ -56,7 +57,11 @@ let previousLosses;
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
 //TODO: create logic for the end of the game
-//Todo: create a restart button
+//ToDo: where to put this  wordList.splice(randomIndex, 1)
+//Todo: check for errors with LocalStorage
+
+previousWins = localStorage.getItem("win");
+previousLosses = localStorage.getItem("lose");
 
 function displayBtn() {
   for (let i = 0; i < alphabet.length; i++) {
@@ -74,11 +79,11 @@ function movieWord() {
     randomWord = wordList[randomIndex].movie;
     randomWord = new Word(randomWord);
     wordSpaces.innerHTML = randomWord.display();
+   
 
     guessesLeft.textContent = `Guesses Left: ${remainaingGuesses}`;
 
-    previousWins = localStorage.getItem("win");
-    previousLosses = localStorage.getItem("lose");
+   
 
     if (previousWins > 0) {
       winEL.textContent = `Wins: ${previousWins}`;
@@ -94,7 +99,7 @@ function checkLetter(userChoice) {
   randomWord.check(userChoice);
   wordSpaces.innerHTML = randomWord.display();
   const show = randomWord.display();
-  console.log(show);
+  
 
   if (!show.includes(userChoice) && !wrongGuesses.includes(userChoice)) {
     console.log("try again");
@@ -113,15 +118,16 @@ function checkLetter(userChoice) {
   }
 
   // hint
-  if (remainaingGuesses === 5) {
-    console.log(remainaingGuesses === 5);
+  if (remainaingGuesses === 4) {
     hintBtn.innerHTML = " ";
     const button = document.createElement("button");
     button.setAttribute("class", " button hint");
     button.textContent = "Hint!";
     hintBtn.append(button);
 
-    //TODO: set timer to pause btn animation
+    setTimeout(()=>{
+      button.style.animationPlayState='paused'
+    },10000)
   }
 
   WinLose(show);
@@ -137,7 +143,7 @@ function hint() {
   h3.setAttribute("class", "title has-text-centered");
   h3.textContent = wordList[randomIndex].hint;
   modalBody.append(h3, img);
-  keepPlayingBtn.style.display = "none";
+  keepPlayingModalBtn.style.display = "none";
   scoresBtn.style.display = "none";
   openModal();
 }
@@ -166,8 +172,6 @@ function WinLose(show) {
       ],
     });
     openModal();
-    previousWins = localStorage.getItem("win");
-    console.log(previousWins);
     win += previousWins;
     localStorage.setItem("win", ++win);
     winEL.textContent = `Wins: ${win}`;
@@ -175,11 +179,20 @@ function WinLose(show) {
     modalTitle.textContent = "LOSER!!!";
     modalBody.textContent = "YOU SUCK AT 90'S MOVIES!!!!";
     openModal();
-    previousLosses = localStorage.getItem("lose");
     lose += [previousLosses];
     localStorage.setItem("lose", ++lose);
     lossesEL.textContent = `Losses: ${lose}`;
   }
+}
+
+function keepPlaying(){
+  wordList.splice(randomIndex, 1)
+  next.innerHTML=" "
+  const btn=document.createElement("button")
+  btn.setAttribute("class", "button continue-game")
+  btn.textContent="Keep Playing"
+  next.append(btn)
+
 }
 
 //Event Listeners
@@ -202,12 +215,17 @@ letterBtnEL.addEventListener("click", (event) => {
 closeModalEL.addEventListener("click", (event) => {
   event.preventDefault();
   modal.classList.remove("is-active");
+  keepPlaying()
 });
 
 hintBtn.addEventListener("click", (event) => {
   event.preventDefault();
   hint();
 });
+
+next.addEventListener("click",()=>{
+  movieWord();
+})
 
 function openModal() {
   modal.classList.add("is-active");
