@@ -1,6 +1,6 @@
 const gameContainer = document.getElementById("gameContainer");
 const startBtn = document.getElementById("startBtn");
-const sub=document.querySelector(".press-start")
+const sub = document.querySelector(".press-start");
 const letterBtnEL = document.getElementById("letterbtn");
 const badLetters = document.getElementById("badLetters");
 let wordSpaces = document.getElementById("wordSpaces");
@@ -58,8 +58,6 @@ let previousLosses;
 //TODO: create logic for the end of the game
 //Todo: create a restart button
 
-
-
 function displayBtn() {
   for (let i = 0; i < alphabet.length; i++) {
     const letterBtn = document.createElement("button");
@@ -82,8 +80,11 @@ function movieWord() {
     previousWins = localStorage.getItem("win");
     previousLosses = localStorage.getItem("lose");
 
-    if (previousWins > 0 && previousLosses > 0) {
+    if (previousWins > 0) {
       winEL.textContent = `Wins: ${previousWins}`;
+      
+    } 
+    if(previousLosses > 0){
       lossesEL.textContent = `Losses: ${previousLosses}`;
     }
   }
@@ -144,9 +145,9 @@ function WinLose(show) {
     modalBody.innerHTML = " ";
     const img = document.createElement("img");
     img.setAttribute("src", endGame[0].victoryimg);
-    img.style.width="300px";
-    img.style.display="400px";
-    const figure=document.createElement("figure");
+    img.style.width = "300px";
+    img.style.display = "400px";
+    const figure = document.createElement("figure");
     figure.setAttribute("class", "is-flex is-justify-content-center");
     figure.append(img);
     modalTitle.textContent = "YOU KNOW YOUR 90'S MOVIES!";
@@ -182,9 +183,9 @@ function WinLose(show) {
 startBtn.addEventListener("click", (event) => {
   event.preventDefault();
   gameContainer.classList.remove("is-hidden");
-  startBtn.style.display= "none";
-  sub.style.animationPlayState="paused";
-  sub.style.display="none";
+  startBtn.style.display = "none";
+  sub.style.animationPlayState = "paused";
+  sub.style.display = "none";
   displayBtn();
   movieWord();
 });

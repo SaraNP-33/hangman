@@ -14,7 +14,7 @@ body{
 }
 .title,
 .subtitle{
-    color:#E39EC1;
+    color:#f4b824 ;
     font-weight: bolder;
 
 }
@@ -49,17 +49,17 @@ body{
 #losses,
 #possible,
 #wrongLetters{
-    color:#E39EC1;
+    color:#f4b824 ;
 }
 
 .alphaBtn{
     background-color:#012A36 !important ;
     color:whitesmoke;
-    border: solid 2px #D295BF;
+    border: solid 2px rgb(244,184,36, .5) ;
     border-radius:30%;
 }
 .alphaBtn:hover{
-    color:#D295BF;
+    color: #efcd21 !important;
 }
 
 /* .modal-card-body{
