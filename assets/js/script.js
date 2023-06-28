@@ -46,8 +46,8 @@ const alphabet = [
 ];
 
 let randomWord;
-const wrongGuesses = [];
-let remainaingGuesses = 6;
+let wrongGuesses = [];
+let remainaingGuesses =6;
 const jsConfetti = new JSConfetti();
 let randomIndex;
 let win = 0;
@@ -57,8 +57,9 @@ let previousLosses;
 
 //TODO: Find how to create the alphabet letters in the Letter constructor
 //TODO: create logic for the end of the game
-//ToDo: where to put this  wordList.splice(randomIndex, 1)
+//ToDo: where to put this  badLetter.innerHTML= " " to reset bad letters
 //Todo: check for errors with LocalStorage
+//ToDo: reset guesses when you keep playing
 
 previousWins = localStorage.getItem("win");
 previousLosses = localStorage.getItem("lose");
@@ -74,6 +75,7 @@ function displayBtn() {
 }
 
 function movieWord() {
+
   if (wordList.length > 0) {
     randomIndex = Math.floor(Math.random() * wordList.length);
     randomWord = wordList[randomIndex].movie;
@@ -118,8 +120,10 @@ function checkLetter(userChoice) {
   }
 
   // hint
-  if (remainaingGuesses === 4) {
+  if (remainaingGuesses == 4) {
+    console.log(remainaingGuesses == 4);
     hintBtn.innerHTML = " ";
+    hintBtn.style.visibility="visible"
     const button = document.createElement("button");
     button.setAttribute("class", " button hint");
     button.textContent = "Hint!";
@@ -127,7 +131,7 @@ function checkLetter(userChoice) {
 
     setTimeout(()=>{
       button.style.animationPlayState='paused'
-    },10000)
+    },3000)
   }
 
   WinLose(show);
@@ -143,8 +147,6 @@ function hint() {
   h3.setAttribute("class", "title has-text-centered");
   h3.textContent = wordList[randomIndex].hint;
   modalBody.append(h3, img);
-  keepPlayingModalBtn.style.display = "none";
-  scoresBtn.style.display = "none";
   openModal();
 }
 
@@ -175,6 +177,8 @@ function WinLose(show) {
     win += previousWins;
     localStorage.setItem("win", ++win);
     winEL.textContent = `Wins: ${win}`;
+    hintBtn.style.visibility="hidden"
+    keepPlaying()
   } else if (remainaingGuesses === 0) {
     modalTitle.textContent = "LOSER!!!";
     modalBody.textContent = "YOU SUCK AT 90'S MOVIES!!!!";
@@ -182,6 +186,8 @@ function WinLose(show) {
     lose += [previousLosses];
     localStorage.setItem("lose", ++lose);
     lossesEL.textContent = `Losses: ${lose}`;
+    hintBtn.style.display="none"
+    keepPlaying()
   }
 }
 
@@ -193,6 +199,12 @@ function keepPlaying(){
   btn.textContent="Keep Playing"
   next.append(btn)
 
+}
+function reset(){
+  wrongGuesses=[]
+  badLetters.innerHTML=" "
+  remainaingGuesses =6
+  guessesLeft.textContent = `Guesses Left: ${remainaingGuesses}`;
 }
 
 //Event Listeners
@@ -215,7 +227,7 @@ letterBtnEL.addEventListener("click", (event) => {
 closeModalEL.addEventListener("click", (event) => {
   event.preventDefault();
   modal.classList.remove("is-active");
-  keepPlaying()
+  
 });
 
 hintBtn.addEventListener("click", (event) => {
@@ -224,6 +236,7 @@ hintBtn.addEventListener("click", (event) => {
 });
 
 next.addEventListener("click",()=>{
+  reset()
   movieWord();
 })
 
